@@ -258,6 +258,19 @@ class Jbuilder < JbuilderProxy
     ::MultiJson.encode @attributes
   end
 
+  def merge!(attributes={})
+    case attributes
+    when Hash
+      attributes_to_merge = attributes
+    when String
+      attributes_to_merge = ::MultiJson.load(attributes)
+    else
+      attributes_to_merge = {}
+    end
+
+    @attributes.merge!(attributes_to_merge)
+  end
+
   protected
     def _set_value(key, value)
       unless @ignore_nil && value.nil?
