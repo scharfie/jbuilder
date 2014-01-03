@@ -15,9 +15,12 @@ rescue LoadError
 end
 
 class Jbuilder < JbuilderProxy
+  class AttributeHash < HashWithIndifferentAccess
+  end
+
   class KeyFormatter
     def initialize(*args)
-      @format = ::ActiveSupport::OrderedHash.new
+      @format = AttributeHash.new
       @cache = {}
 
       options = args.extract_options!
@@ -54,7 +57,7 @@ class Jbuilder < JbuilderProxy
   @@ignore_nil    = false
 
   def initialize(*args)
-    @attributes = ::ActiveSupport::OrderedHash.new
+    @attributes = AttributeHash.new
 
     options = args.extract_options!
     @key_formatter = options.fetch(:key_formatter, @@key_formatter.clone)
@@ -334,7 +337,7 @@ class Jbuilder < JbuilderProxy
 
     def _scope
       parent_attributes, parent_formatter = @attributes, @key_formatter
-      @attributes = ::ActiveSupport::OrderedHash.new
+      @attributes = AttributeHash.new
       yield
       @attributes
     ensure
