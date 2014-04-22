@@ -1,3 +1,4 @@
+require 'active_support/hash_with_indifferent_access'
 require 'active_support/ordered_hash'
 require 'active_support/core_ext/array/access'
 require 'active_support/core_ext/enumerable'
