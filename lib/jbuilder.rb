@@ -16,7 +16,7 @@ rescue LoadError
 end
 
 class Jbuilder < JbuilderProxy
-  class AttributeHash < ActiveSupport::HashWithIndifferentAccess
+  class AttributeHash < ::ActiveSupport::HashWithIndifferentAccess
   end
 
   class KeyFormatter
