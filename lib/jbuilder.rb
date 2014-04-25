@@ -264,9 +264,9 @@ class Jbuilder < JbuilderProxy
 
   def merge!(attributes={})
     case attributes
-    when Hash
+    when ::Hash
       attributes_to_merge = attributes
-    when String
+    when ::String
       attributes_to_merge = ::MultiJson.load(attributes)
     else
       attributes_to_merge = {}
